@@ -33,6 +33,10 @@
 #ifndef _CLHT_LF_RES_H_
 #define _CLHT_LF_RES_H_
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <inttypes.h>
@@ -312,6 +316,10 @@ int ht_resize_pes(clht_t* hashtable, int is_increase, int by);
 void  clht_print_retry_stats();
 
 const char* clht_type_desc();
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* _CLHT_LF_RES_H_ */
 
