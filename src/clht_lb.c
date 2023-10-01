@@ -482,3 +482,22 @@ clht_print(clht_hashtable_t* hashtable)
     }
   fflush(stdout);
 }
+
+size_t
+clht_size_mem(clht_hashtable_t* h) /* in bytes */
+{
+  if (h == NULL)
+    {
+      return 0;
+    }
+
+  size_t size_tot = sizeof(clht_hashtable_t**);
+  size_tot += (h->num_buckets) * sizeof(bucket_t);
+  return size_tot;
+}
+
+
+size_t clht_memory(clht_hashtable_t* hashtable) {
+  return clht_size_mem(hashtable);
+}
+

@@ -142,7 +142,7 @@ clht_create(uint64_t num_buckets)
   w->ht_oldest = w->ht;
 
   return w;
-}
+};
 
 clht_hashtable_t* 
 clht_hashtable_create(uint64_t num_buckets) 

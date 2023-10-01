@@ -194,6 +194,8 @@ void clht_destroy(clht_hashtable_t* hashtable);
 
 size_t clht_size(clht_hashtable_t* hashtable);
 
+size_t clht_memory(clht_hashtable_t* hashtable);
+
 void clht_print(clht_hashtable_t* hashtable);
 
 bucket_t* clht_bucket_create();
