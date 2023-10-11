@@ -461,7 +461,7 @@ clht_print(clht_hashtable_t* hashtable)
     {
       bucket = hashtable->table + bin;
       
-      printf("[[%05d]] ", bin);
+      // printf("[[%05d]] ", bin);
 
       uint32_t j;
       do
@@ -470,29 +470,39 @@ clht_print(clht_hashtable_t* hashtable)
 	    {
 	      if (bucket->key[j])
 	      	{
-		  printf("(%-5llu)-> ", (long long unsigned int) bucket->key[j]);
+		  // printf("(%-5llu)-> ", (long long unsigned int) bucket->key[j]);
 		}
 	    }
 
 	  bucket = bucket->next;
-	  printf(" ** -> ");
+	  // printf(" ** -> ");
 	}
       while (bucket != NULL);
-      printf("\n");
+      // printf("\n");
     }
   fflush(stdout);
 }
 
 size_t
-clht_size_mem(clht_hashtable_t* h) /* in bytes */
+clht_size_mem(clht_hashtable_t* hashtable) /* in bytes */
 {
-  if (h == NULL)
-    {
-      return 0;
-    }
-
   size_t size_tot = sizeof(clht_hashtable_t**);
-  size_tot += (h->num_buckets) * sizeof(bucket_t);
+  uint64_t num_buckets = hashtable->num_buckets;
+  bucket_t* bucket;
+
+  printf("Number of buckets: %u\n", num_buckets);
+
+  uint64_t bin;
+  for (bin = 0; bin < num_buckets; bin++)
+    {
+      bucket = hashtable->table + bin;
+      do
+	{
+    size_tot += sizeof(bucket_t);
+	  bucket = bucket->next;
+	}
+      while (bucket != NULL);
+    }
   return size_tot;
 }
 
